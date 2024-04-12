@@ -4,7 +4,7 @@ metadata:
   name: nginx-canary
   namespace: default
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
@@ -20,12 +20,12 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx-latest
-        image: nginx:latest
+      - name: nginx-base
+        image: nginx:stable-alpine3.17-slim
         ports:
         - containerPort: 80
-      - name: nginx-slim
-        image: nginx:stable-alpine3.17-slim
+      - name: nginx-canary
+        image: nginx:latest
         ports:
         - containerPort: 80
 ---
